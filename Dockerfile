@@ -13,7 +13,7 @@ RUN     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys DC682B55
 RUN     apt-get update
 RUN     apt-get purge -y exim4 rpcbind portmap at avahi-daemon
 RUN     apt-get upgrade -y
-RUN     apt-get install -y --no-install-recommends tcpdump traceroute curl wget git less screen vim nano ntp ntpdate telnet syslog-ng zip unzip man rsync
+RUN     apt-get install -y --no-install-recommends tcpdump traceroute curl wget git less screen vim nano ntp ntpdate telnet syslog-ng zip unzip man rsync ssl-cert
 RUN     apt-get install -y --no-install-recommends openssh-server supervisor cron
 RUN     apt-get install -y --no-install-recommends bind9 dnsutils libnet-dns-sec-perl whois openssl ldnsutils
 RUN     rm -rf /var/lib/apt/lists/*
