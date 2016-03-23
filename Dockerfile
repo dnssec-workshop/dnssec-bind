@@ -13,7 +13,7 @@ RUN     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys DC682B55
 RUN     apt-get update
 RUN     apt-get purge -y exim4 rpcbind portmap at avahi-daemon
 RUN     apt-get upgrade -y
-RUN     apt-get install -y --no-install-recommends tcpdump traceroute curl wget git less screen vim nano ntp ntpdate telnet syslog-ng zip unzip man
+RUN     apt-get install -y --no-install-recommends tcpdump traceroute curl wget git less screen vim nano ntp ntpdate telnet syslog-ng zip unzip man rsync
 RUN     apt-get install -y --no-install-recommends openssh-server supervisor cron
 RUN     apt-get install -y --no-install-recommends bind9 dnsutils libnet-dns-sec-perl whois openssl ldnsutils
 RUN     rm -rf /var/lib/apt/lists/*
@@ -28,6 +28,7 @@ RUN     ssh-keygen -A
 RUN     chmod 600 /etc/ssh/ssh_host_*
 RUN     sed -i "s/PermitRootLogin.*/PermitRootLogin yes/" /etc/ssh/sshd_config
 RUN     echo "UseDNS no" >> /etc/ssh/sshd_config
+RUN     sed -ri 's/^session\s+required\s+pam_loginuid.so$/session optional pam_loginuid.so/' /etc/pam.d/sshd
 
 RUN     mkdir -p /var/run/sshd
 
