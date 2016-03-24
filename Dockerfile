@@ -1,11 +1,11 @@
 # Image: dnssec-bind
 # Startup a docker container with sshd and BIND 9.10
 
+LABEL RELEASE=20160324-2042
+
 FROM ubuntu:wily
 
 MAINTAINER dape16 "dockerhub@arminpech.de"
-
-LABEL RELEASE=20160323-2233
 
 # Configure non-standard repo for BIND 9.10
 RUN     echo "deb http://ppa.launchpad.net/mgrocock/bind9/ubuntu wily main" \

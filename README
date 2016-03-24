@@ -1,10 +1,14 @@
-This image is used as a base for a DNSSEC workshop: https://github.com/pecharmin/dnssec-workshop
-It runs a SSHd and named for testing DNSSEC. It also ships some useful tools to check the DNS setup.
+This docker base image is used for further container by a DNSSEC workshop:
+https://github.com/dnssec-workshop/dnssec-doc
+
+This container runs a SSHd and named for easy testing DNSSEC.
+It also ships some useful tools to check the DNS setup.
 
 ## How to use it directly
 ```
 docker pull dape16/dnssec-bind
-docker run --detach --dns=127.0.0.1 --hostname=$CID --name=$CID dape16/dnssec-bind
+docker run --detach --dns=127.0.0.1 \
+  --hostname=$CID --name=$CID dape16/dnssec-bind
 ```
 
 ## How to reuse it in your project
@@ -12,7 +16,8 @@ docker run --detach --dns=127.0.0.1 --hostname=$CID --name=$CID dape16/dnssec-bi
 FROM dape16/dnssec-bind
 
 EXPOSE  22 53
-CMD     [ "/usr/bin/supervisord -c /etc/supervisor/conf.d/dnssec-bind.conf" ]
+CMD     [ "/usr/bin/supervisord", "-c", \
+          "/etc/supervisor/conf.d/dnssec-bind.conf" ]
 ```
 
 ## Optional securing the VM
@@ -26,9 +31,14 @@ RUN     chmod 600 /etc/ssh/ssh_host_*
 RUN     echo 'root:root' | chpasswd
 
 # Generate a new rndc key for BIND
-RUN     rndc-confgen | awk '/^key "rndc-key"/,/^};/ {print}' > /etc/bind/rndc.key
+RUN     rndc-confgen | \
+          awk '/^key "rndc-key"/,/^};/ {print}' \
+          > /etc/bind/rndc.key
 
 # Startup services
 EXPOSE  22 53
-CMD     [ "/usr/bin/supervisord -c /etc/supervisor/conf.d/dnssec-bind.conf" ]
+CMD     [ "/usr/bin/supervisord", "-c", \
+          "/etc/supervisor/conf.d/dnssec-bind.conf" ]
 ```
+
+/* vim: set syntax=markdown tabstop=2 expandtab: */
