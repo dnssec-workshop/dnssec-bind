@@ -5,7 +5,7 @@ FROM ubuntu:wily
 
 MAINTAINER dape16 "dockerhub@arminpech.de"
 
-LABEL RELEASE=20160324-2058
+LABEL RELEASE=20160325-1611
 
 # Configure non-standard repo for BIND 9.10
 RUN     echo "deb http://ppa.launchpad.net/mgrocock/bind9/ubuntu wily main" \
