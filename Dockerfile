@@ -48,7 +48,8 @@ RUN     mkdir -p /etc/bind/zones /etc/bind/keys /etc/bind/scripts
 RUN     mkdir -p /var/log/named /var/run/named /var/lib/bind /var/cache/bind
 RUN     chown -R root:bind /var/log/named /var/run/named \
           /var/lib/bind /var/cache/bind /etc/bind/zones
-RUN     chmod 775 /var/log/named /var/lib/bind /var/cache/bind /etc/bind/zones
+RUN     chmod 775 /var/log/named /var/run/named/ \
+          /var/lib/bind /var/cache/bind /etc/bind/zones
 
 RUN     rndc-confgen | awk '/^key "rndc-key"/,/^};/ {print}' > /etc/bind/rndc.key
 
