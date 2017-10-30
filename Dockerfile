@@ -1,16 +1,11 @@
 # Image: dnssec-bind
 # Startup a docker container with sshd and BIND 9.10
 
-FROM ubuntu:wily
+FROM ubuntu:latest
 
 MAINTAINER dape16 "dockerhub@arminpech.de"
 
-LABEL RELEASE=20160326-1355
-
-# Configure non-standard repo for BIND 9.10
-RUN     echo "deb http://ppa.launchpad.net/mgrocock/bind9/ubuntu wily main" \
-          > /etc/apt/sources.list.d/wily-bind9.list
-RUN     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys DC682B55
+LABEL RELEASE=20171013-2152
 
 # Install software
 RUN     apt-get update
